@@ -1,0 +1,40 @@
+
+<div><h5 class="text-lg font-semibold mb-2">Movie Listing @ GV Cinema</h5></div>
+
+<div class="mb-3">
+    <div class="relative flex w-full border border-white-dark/20">
+        <button
+            type="button"
+            class="m-auto flex items-center justify-center p-3 text-primary" >
+            <icon-search class="mx-auto h-5 w-5" />
+        </button>
+        <input
+            type="text"
+            [(ngModel)]="searchTerm"
+            (input)="searchMovies()"
+            placeholder="Search"
+            class="form-input rounded-none border-0 border-l bg-white py-3 placeholder:tracking-wider focus:shadow-[0_0_5px_2px_rgb(194_213_255_/_62%)] focus:outline-none dark:shadow-[#1b2e4b]"
+        />
+    </div>
+</div>
+
+<div><h5 class="text-lg font-semibold mb-2">Popular movie this month</h5></div>
+
+<div class="min-h-[220px] sm:min-h-[200px]">
+    <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+        <ng-container *ngFor="let note of notesList">
+            <div class="panel" (click)="router.navigate(['/movie/'+note.id])">
+                <div class="h-[320px]">
+                    <img src="{{note.imgPath}}" alt="images" class="h-full min-h-[220px] w-full rounded-md object-cover" />
+                </div>
+                <div class="w-full">
+                    <div>
+                        <h4 class="mt-4 font-semibold">{{ note.name }}</h4>
+                        <p class="mt-1 text-white-dark">{{ note.duration }} minutes</p>
+                        <p class="mt-1 text-white-dark">User Rating:{{ note.userRating }}</p>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>
